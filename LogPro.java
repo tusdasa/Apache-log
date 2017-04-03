@@ -1,20 +1,17 @@
 /**
   * Time: 2017/1/18 13:35
- * User: TusdasaÒí
- *
- */
+  * User: Tusdasaç¿¼
+  *
+  */
 import java.io.*;
 import java.util.Vector;
 public class LogPro {
-	//Ê¹ÓÃµÄ±äÁ¿
+
     private String ip="";
-    //Ä¬ÈÏ·ÃÎÊ´ÎÊı
     private int times=1;
-    //ip
     public Vector<String> ipqueue =new Vector<String>();
-    //´ÎÊı
     public Vector<Integer> iptimes =new Vector<Integer>();
-    //¶ÁÈëÎÄ¼ş
+    public Vector<String> location=new Vector<String>();
     LogPro(String filename){
         try{
             StringBuffer sb=new StringBuffer();
@@ -36,13 +33,14 @@ public class LogPro {
             this.StringComparative();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            System.out.println("File Not Found!");
         }
         catch (IOException e) {
             e.printStackTrace();
+            System.out.println("Not read file!");
         }
 
     }
-    //´¦Àí·ÃÎÊ´ÎÊı
     private void StringComparative(){
         int temp=0;
         while (temp < 1){
@@ -65,7 +63,6 @@ public class LogPro {
         }
 
     }
-	//»ñµÃ´óĞ¡
     public int getipsize(){
         if (this.iptimes.size()==this.ipqueue.size())
             return ipqueue.size();

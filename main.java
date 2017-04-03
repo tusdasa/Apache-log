@@ -1,34 +1,52 @@
 /**
  * Program: Apache_Log
  * Time: 2017/1/18 13:35
- * User: TusdasaÒí
+ * User: Tusdasaç¿¼
  */
-public class main {
+public class Main {
     public static void main(String[] args) {
 
         if (args[0]==null){
-            System.out.println("Çë¼üÈëÈÕÖ¾Î»ÖÃ");
+            System.out.println("è¯·é”®å…¥æ—¥å¿—ä½ç½®");
             System.exit(10);
         }
             LogPro logPro = new LogPro(args[0]);
             DataBase dataBase = new DataBase();
             dataBase.GetConnectionInfo();
             dataBase.SetSqlValue();
-
+            dataBase.IPLocation(logPro.ipqueue,logPro.location);
         if (dataBase.TestConnection()) {
-            System.out.println("MySQLÁ´½Ó³É¹¦");
-            dataBase.Select(dataBase.db_ipqueue, dataBase.db_iptimes);
+        		System.out.println("--------------------------");
+        		System.out.println("- æ¬¢è¿ä½¿ç”¨Apacheæ—¥å¿—å¤„ç† -");
+        		System.out.println("-          ä½œè€…:tusdasaç¿¼-");
+        		System.out.println("--------------------------");
+				System.out.println("-------MySQLé“¾æ¥æˆåŠŸ------");
+				System.out.println("**************************");
+				dataBase.Select(dataBase.db_ipqueue, dataBase.db_iptimes);
             if (dataBase.db_ipqueue.size()>0){
                 dataBase.StringLink(logPro.ipqueue, logPro.iptimes, dataBase.db_ipqueue, dataBase.db_iptimes);
-                System.out.println("³É¹¦¸üĞÂ" + dataBase.Update(dataBase.ex_ip, dataBase.ex_ti, dataBase.ex_ip.size()) + "Ìõ¼ÇÂ¼");
-                System.out.println("³É¹¦Ôö¼Ó"+dataBase.Insert(logPro.ipqueue,logPro.iptimes,logPro.ipqueue.size())+"Ìõ¼ÇÂ¼");
+            	System.out.println("*********ä¿¡æ¯*************");
+            	System.out.println("--------------------------");
+                System.out.println("*****æˆåŠŸæ›´æ–°"+dataBase.Update(dataBase.ex_ip, dataBase.ex_ti, dataBase.ex_ip.size())+"æ¡è®°å½•***");
+                System.out.println("--------------------------");
+                System.out.println("*****æˆåŠŸå¢åŠ "+dataBase.Insert(logPro.ipqueue,logPro.iptimes,logPro.location,logPro.ipqueue.size())+"æ¡è®°å½•***");
+                System.out.println("**************************");
             }else {
-                System.out.println("¼ì²éµ½ÊÇµÚÒ»´ÎÔËĞĞ");
-                System.out.println("³É¹¦Ğ´Èë"+dataBase.Insert(logPro.ipqueue, logPro.iptimes, logPro.getipsize())+"Ìõ¼ÇÂ¼");
+				System.out.println("*********ä¿¡æ¯*************");
+				System.out.println("-----æ£€æµ‹åˆ°æ•°æ®è¡¨ä¸ºç©º-----");
+            	System.out.println("--------------------------");
+                System.out.println("*****æˆåŠŸå†™å…¥"+dataBase.Insert(logPro.ipqueue, logPro.iptimes,logPro.location, logPro.getipsize())+"æ¡è®°å½•***");
+                System.out.println("**************************");
             }
     }else{
-            System.out.println("MySQLÁ´½ÓÊ§°Ü!");
-            System.exit(10);
+    			System.out.println("--------------------------");
+        		System.out.println("- æ¬¢è¿ä½¿ç”¨Apacheæ—¥å¿—å¤„ç† -");
+        		System.out.println("-          ä½œè€…:tusdasaç¿¼-");
+        		System.out.println("--------------------------");
+				System.out.println("******æ¬¢è¿ä½¿ç”¨æœ¬ç³»ç»Ÿ******");
+				System.out.println("*******MySQLé“¾æ¥å¤±è´¥******");
+				System.out.println("*******æ£€æµ‹æ‚¨çš„é…ç½®*******");
+				System.exit(10);
         }
        }
     }
